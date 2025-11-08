@@ -188,7 +188,8 @@ def page_teacher():
         # current question
         qrow = next(q for q in quiz.questions if q.qid == quiz.current_q)
         st.markdown(f"### Pregunta {quiz.current_q}/{len(quiz.questions)}")
-        st.write(qrow.text)
+
+        st.markdown(qrow.text, unsafe_allow_html=False)
         st.write(f"A) {qrow.A}")
         st.write(f"B) {qrow.B}")
         st.write(f"C) {qrow.C}")
@@ -305,7 +306,7 @@ def page_student():
         # live view
         qrow = next(q for q in quiz.questions if q.qid == quiz.current_q)
         st.markdown(f"### Pregunta {quiz.current_q}/{len(quiz.questions)}")
-        st.write(qrow.text)
+        st.markdown(qrow.text, unsafe_allow_html=False)
         left = max(int(quiz.time_per_q - (time.time() - quiz.started_at)), 0)
         pill(f"Tiempo: {left}s")
 
